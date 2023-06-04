@@ -1,62 +1,9 @@
-﻿@using TreeV2.Entities
-@model TreeV2.NodeDto.EditNodeDto
-
-@{
-    ViewData["Title"] = "Edit";
-}
-
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" asp-controller="Tree" method="post" class="d-flex flex-column">
-            <div class="form-group">
-                <label asp-for="Name">Name</label>
-                <input asp-for="Name" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="ParentNode">Parent Node</label>
-                <select asp-for="ParentNode" class="form-control">
-                    <option value="">Select parent</option>
-                    @foreach (var node in Model.Nodes)
-                    {
-                        <option value="@node.Id">@node.Id. @node.Name</option>
-                    }
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Save</button>
-        </form>
-    </div>
-    <div class="col-md-8">
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <button class="btn btn-primary w-100" type="button" v-on:click="foldList($event)">Fold List</button>
-            </div>
-            <div class="col-md-6">
-                <button class="btn btn-primary w-100" type="button" v-on:click="unfoldList($event)">Unfold List</button>
-            </div>
-        </div>
-        <div>
-            <ul class="list-unstyled" id="root">
-                @foreach (var node in Model.Nodes)
-                {
-                    await ShowTree(node);
-                }
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="row" style="margin-left: 25%;">
-    <div class="col-md-6">
-        @Html.ActionLink("Sort by Id", "Index", "Tree", new { sort = "Id" }, new { @class = "btn btn-primary w-100 m-2" })
-    </div>
-    <div class="col-md-6">
-        @Html.ActionLink("Sort by Name", "Index", "Tree", new { sort = "Name" }, new { @class = "btn btn-primary w-100 m-2" })
-    </div>
-</div>
-
-@functions
-{
-    private async Task ShowTree(Node node)
+﻿@model TreeV2.NodeDto.EditNodeDto
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@functions {
+    private void ShowTree(TreeV2.Entities.Node node)
     {
         <li>
             @if (node.Children.Count != 0)
@@ -68,29 +15,62 @@
                 <span class="bi bi-folder" style="cursor:not-allowed"></span>
             }
             <label>
-                <input type="radio" asp-for="SelectedNodeId" value="@node.Id" />
-                @node.Id. @node.Name
+                @Html.RadioButtonFor(m => m.SelectedNodeId, node.Id.ToString())
+                @node.Id.
+                @node.Name
             </label>
-            <a asp-action="Delete" asp-controller="Tree" asp-route-id="@node.Id" class="bi bi-trash-fill text-decoration-none text-reset"></a>
+            @Html.ActionLink("", "Delete", "Tree", new { id = node.Id }, new { @class = "bi bi-trash-fill text-decoration-none text-reset" })
             @if (node.Children.Count != 0)
             {
-                <ul style="list-style:none">
+                <ul style="list-style: none">
                     @if (ViewData["Sort"]?.ToString() == "Name")
                     {
                         @foreach (var child in node.Children.OrderBy(n => n.Name))
                         {
-                            await ShowTree(child);
+                            ShowTree(child);
                         }
                     }
                     else
                     {
                         @foreach (var child in node.Children)
                         {
-                            await ShowTree(child);
+                            ShowTree(child);
                         }
                     }
                 </ul>
             }
         </li>
     }
+}
+
+@if (Model.Nodes.FirstOrDefault() is not null)
+{
+    @using (Html.BeginForm("Edit", "Tree", null, FormMethod.Post, true, new { @class = "d-flex flex-row" }))
+    {
+        <div class="w-25 d-flex flex-column">
+            <h3>Edit</h3>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+            @Html.LabelFor(m => m.ParentNode)
+            @Html.DropDownListFor(m => m.ParentNode, new SelectList(Model.Nodes.Select(m=>m.Id + ". " + m.Name)), "Select parent")
+            <input type="submit" class="mt-3" />
+        </div>
+        <div class="w-75">
+            <div class="d-flex mb-3">
+                <button class="btn btn-primary w-50 m-2" type="button" v-on:click="foldList($event)">Fold list</button>
+                <button class="btn btn-primary w-50 m-2" type="button" v-on:click="unfoldList($event)">Unfold list</button>
+            </div>
+            <div>
+                <ul style="list-style:none" id="root">
+                    @{
+                        ShowTree(Model.Nodes.First());
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    <div class="d-flex" style="margin-left: 25%;">
+        @Html.ActionLink("Sort by Id", "Index", "Tree", new { sort = "Id"}, new { @class="btn btn-primary w-50 m-2"})
+        @Html.ActionLink("Sort by Name", "Index", "Tree", new { sort = "Name"}, new { @class="btn btn-primary w-50 m-2"})
+    </div>
 }
