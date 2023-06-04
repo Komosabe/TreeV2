@@ -1,3 +1,11 @@
+D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.csproj.AssemblyReference.cache
+D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.AssemblyInfoInputs.cache
+D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.AssemblyInfo.cs
+D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.csproj.CoreCompileInputs.cache
+D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.MvcApplicationPartsAssemblyInfo.cache
+D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.RazorAssemblyInfo.cache
+D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.RazorAssemblyInfo.cs
 D:\Projekty - Git\TreeV2\TreeV2\bin\Debug\net7.0\appsettings.Development.json
 D:\Projekty - Git\TreeV2\TreeV2\bin\Debug\net7.0\appsettings.json
 D:\Projekty - Git\TreeV2\TreeV2\bin\Debug\net7.0\TreeV2.staticwebassets.runtime.json
@@ -22,14 +30,6 @@ D:\Projekty - Git\TreeV2\TreeV2\bin\Debug\net7.0\Npgsql.dll
 D:\Projekty - Git\TreeV2\TreeV2\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\Projekty - Git\TreeV2\TreeV2\bin\Debug\net7.0\System.CodeDom.dll
 D:\Projekty - Git\TreeV2\TreeV2\bin\Debug\net7.0\System.Security.Permissions.dll
-D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.csproj.AssemblyReference.cache
-D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.GeneratedMSBuildEditorConfig.editorconfig
-D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.AssemblyInfoInputs.cache
-D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.AssemblyInfo.cs
-D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.csproj.CoreCompileInputs.cache
-D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.MvcApplicationPartsAssemblyInfo.cache
-D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.RazorAssemblyInfo.cache
-D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\TreeV2.RazorAssemblyInfo.cs
 D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\staticwebassets\msbuild.TreeV2.Microsoft.AspNetCore.StaticWebAssets.props
 D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\staticwebassets\msbuild.build.TreeV2.props
 D:\Projekty - Git\TreeV2\TreeV2\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.TreeV2.props

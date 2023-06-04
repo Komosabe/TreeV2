@@ -99,7 +99,7 @@ namespace TreeV2.Services
         {
             if (dto.Name is not null)
             {
-                var node = await _dbcontext.Nodes.FirstOrDefaultAsync(n => n.Id == dto.SelectedNodeId);
+                var node = await _dbcontext.Nodes.FirstOrDefaultAsync(n => n.Id == dto.SelectedId);
 
                 if (node == null)
                 {
@@ -113,7 +113,7 @@ namespace TreeV2.Services
 
             if (dto.ParentNode is not null)
             {
-                var node = await _dbcontext.Nodes.FirstOrDefaultAsync(n => n.Id == dto.SelectedNodeId);
+                var node = await _dbcontext.Nodes.FirstOrDefaultAsync(n => n.Id == dto.SelectedId);
 
                 if (node == null)
                 {

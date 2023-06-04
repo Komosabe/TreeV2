@@ -13,21 +13,6 @@ namespace TreeV2.Controllers
             _treeService = treeService;
         }
 
-        public async Task<IActionResult> Index(string? message)
-        {
-            if (!string.IsNullOrEmpty(HttpContext.Request.Query["sort"]))
-            {
-                HttpContext.Session.SetString("sort", HttpContext.Request.Query["sort"]);
-            }
-
-            ViewData["Message"] = message;
-            ViewData["Sort"] = HttpContext.Session.GetString("sort");
-
-            var nodes = await _treeService.GetAllNodesOrderedById();
-
-            return View(nodes);
-        }
-
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _treeService.DeleteNodeById(id);
@@ -46,7 +31,7 @@ namespace TreeV2.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index", new { message = "Invalid create data" });
+                return RedirectToAction("Index", new { message = "Wrong Data" });
             }
 
             var result = await _treeService.CreateNode(dto);
@@ -64,7 +49,7 @@ namespace TreeV2.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index", new { message = "Invalid edit data" });
+                return RedirectToAction("Index", new { message = "Wrong Data" });
             }
 
             var result = await _treeService.EditNode(dto);
@@ -75,6 +60,21 @@ namespace TreeV2.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Index(string? message)
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Request.Query["sort"]))
+            {
+                HttpContext.Session.SetString("sort", HttpContext.Request.Query["sort"]);
+            }
+
+            ViewData["Message"] = message;
+            ViewData["Sort"] = HttpContext.Session.GetString("sort");
+
+            var nodes = await _treeService.GetAllNodesOrderedById();
+
+            return View(nodes);
         }
     }
 }

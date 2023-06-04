@@ -7,7 +7,7 @@ namespace TreeV2.NodeDto
     public class EditNodeDto
     {
         [Required]
-        public int? SelectedNodeId { get; set; }
+        public int? SelectedId { get; set; }
         [Required(ErrorMessage = "Please, enter the name")]
         [StringLength(20, MinimumLength = 2)]
         public string? Name { get; set; }
