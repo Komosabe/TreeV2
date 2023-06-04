@@ -12,7 +12,7 @@ using TreeV2.Data;
 namespace TreeV2.Migrations
 {
     [DbContext(typeof(TreeDbContext))]
-    [Migration("20230604112455_test")]
+    [Migration("20230604122002_test")]
     partial class test
     {
         /// <inheritdoc />

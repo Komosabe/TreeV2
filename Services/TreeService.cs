@@ -48,7 +48,7 @@ namespace TreeV2.Services
             {
                 if (nodes.Any())
                 {
-                    return TreeV2.Utilities.OperationResult.Failure("You must select parent node");
+                    return TreeV2.Utilities.OperationResult.Failure("Select Parent");
                 }
 
                 await _dbcontext.Nodes.AddAsync(node);
@@ -60,7 +60,7 @@ namespace TreeV2.Services
 
             if (parentNode == null)
             {
-                return TreeV2.Utilities.OperationResult.Failure("Parent node not found");
+                return TreeV2.Utilities.OperationResult.Failure("Parent not found");
             }
 
             parentNode.Children.Add(node);
@@ -70,7 +70,7 @@ namespace TreeV2.Services
             return TreeV2.Utilities.OperationResult.CreateSuccess();
         }
 
-        private async Task<bool> CheckIfPossible(Node node, Node targetNode)
+        private async Task<bool> IsPossible(Node node, Node targetNode)
         {
             var nodeWithChildren = await _dbcontext.Nodes.Include(n => n.Children).FirstOrDefaultAsync(n => n == node);
 
@@ -86,7 +86,7 @@ namespace TreeV2.Services
 
             foreach (var child in nodeWithChildren.Children)
             {
-                if (!await CheckIfPossible(child, targetNode))
+                if (!await IsPossible(child, targetNode))
                 {
                     return false;
                 }
@@ -103,7 +103,7 @@ namespace TreeV2.Services
 
                 if (node == null)
                 {
-                    return TreeV2.Utilities.OperationResult.Failure("Selected node not found");
+                    return TreeV2.Utilities.OperationResult.Failure("Node not found");
                 }
 
                 node.Name = dto.Name;
@@ -117,7 +117,7 @@ namespace TreeV2.Services
 
                 if (node == null)
                 {
-                    return TreeV2.Utilities.OperationResult.Failure("Selected node not found");
+                    return TreeV2.Utilities.OperationResult.Failure("Node not found");
                 }
 
                 var targetParentId = int.Parse(dto.ParentNode.Split(".")[0]);
@@ -126,17 +126,17 @@ namespace TreeV2.Services
 
                 if (targetParentNode == null)
                 {
-                    return TreeV2.Utilities.OperationResult.Failure("Parent node not found");
+                    return TreeV2.Utilities.OperationResult.Failure("Parent not fountd");
                 }
 
                 if (node == targetParentNode)
                 {
-                    return TreeV2.Utilities.OperationResult.Failure("You can't move node to this same node");
+                    return TreeV2.Utilities.OperationResult.Failure("Incorrect activity");
                 }
 
-                if (!await CheckIfPossible(node, targetParentNode))
+                if (!await IsPossible(node, targetParentNode))
                 {
-                    return TreeV2.Utilities.OperationResult.Failure("You can't move node to sub node of this node");
+                    return TreeV2.Utilities.OperationResult.Failure("Incorrect activity");
                 }
 
                 targetParentNode.Children.Add(node);

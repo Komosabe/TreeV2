@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using TreeV2.Data;
+using TreeV2.Interfaces;
 using TreeV2.Seeders;
+using TreeV2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,12 @@ builder.Services.AddDbContext<TreeDbContext>(options =>
     options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<TreeSeeder>();
+
+builder.Services.AddScoped<ITreeService, TreeService>();
+
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
+});
 
 var app = builder.Build();
 
@@ -37,6 +45,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

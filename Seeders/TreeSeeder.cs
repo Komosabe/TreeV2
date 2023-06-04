@@ -18,22 +18,31 @@ namespace TreeV2.Seeders
             {
                 if(!_dbContext.Nodes.Any())
                 {
+                    var child1 = new Node()
+                    {
+                        Name = "Child1",
+                    };
+
+                    var child2 = new Node()
+                    {
+                        Name = "Child2",
+                    };
+
+                    var child3 = new Node()
+                    {
+                        Name = "Child3",
+                    };
                     var parent1 = new Node()
                     {
                         Name = "Parent1",
+                        Children = new List<Node>()
+                        {
+                            child1,
+                            child2,
+                            child3
+                        }
                     };
-
-                    var parent2 = new Node()
-                    {
-                        Name = "Parent2",
-                    };
-
-                    var parent3 = new Node()
-                    {
-                        Name = "Parent3",
-                    };
-
-                    _dbContext.Nodes.AddRange(parent1, parent2, parent3);
+                    _dbContext.Nodes.AddRange(child1, child2, child3, parent1);
 
                     await _dbContext.SaveChangesAsync();
                 }

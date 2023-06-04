@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using TreeV2.Entities;
 
 namespace TreeV2.NodeDto
 {
@@ -12,6 +13,6 @@ namespace TreeV2.NodeDto
         public string? Name { get; set; }
         public string? ParentNode { get; set; }
 
-        public List<SelectListItem>? Parent { get; set; }
+        public List<Node>? Nodes { get; set; }
     }
 }
