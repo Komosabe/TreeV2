@@ -31,7 +31,7 @@ namespace TreeV2.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index", new { message = "Wrong Data" });
+                return RedirectToAction("Index", new { message = "Error" });
             }
 
             var result = await _treeService.CreateNode(dto);
@@ -49,7 +49,7 @@ namespace TreeV2.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index", new { message = "Wrong Data" });
+                return RedirectToAction("Index", new { message = "Error" });
             }
 
             var result = await _treeService.EditNode(dto);
