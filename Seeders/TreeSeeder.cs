@@ -20,17 +20,25 @@ namespace TreeV2.Seeders
                 {
                     var child1 = new Node()
                     {
-                        Name = "Child1",
+                        Name = "AChild1",
                     };
 
                     var child2 = new Node()
                     {
-                        Name = "Child2",
+                        Name = "EChild2",
                     };
 
                     var child3 = new Node()
                     {
-                        Name = "Child3",
+                        Name = "BChild3",
+                    };
+                    var child4 = new Node()
+                    {
+                        Name = "AAChild3",
+                    };
+                    var child5 = new Node()
+                    {
+                        Name = "CChild3",
                     };
                     var parent1 = new Node()
                     {
@@ -39,10 +47,12 @@ namespace TreeV2.Seeders
                         {
                             child1,
                             child2,
-                            child3
+                            child3,
+                            child4,
+                            child5
                         }
                     };
-                    _dbContext.Nodes.AddRange(child1, child2, child3, parent1);
+                    _dbContext.Nodes.AddRange(child1, child2, child3,child4, child5, parent1);
 
                     await _dbContext.SaveChangesAsync();
                 }
