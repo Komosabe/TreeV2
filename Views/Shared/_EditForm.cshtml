@@ -59,6 +59,13 @@
             <div class="d-flex mb-3">
                 <button class="btn btn-primary w-50 m-2" type="button" v-on:click="foldList($event)">Fold list</button>
                 <button class="btn btn-primary w-50 m-2" type="button" v-on:click="unfoldList($event)">Unfold list</button>
+
+                <button class="btn btn-primary w-50 m-2" type="button" v-on:click="moveUp">
+                    <span class="bi bi-arrow-up-circle"></span> Move Up
+                </button>
+                <button class="btn btn-primary w-50 m-2" type="button" v-on:click="moveDown">
+                    <span class="bi bi-arrow-down-circle"></span> Move Down
+                </button>
             </div>
             <div>
                 <ul style="list-style:none" id="root">
